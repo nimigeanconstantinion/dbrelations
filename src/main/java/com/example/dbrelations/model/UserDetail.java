@@ -9,7 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 @Getter
-@Inheritance(strategy = InheritanceType.JOINED)
 @Entity(name = "UserDetail")
 @Table(name = "userdetails")
 public class UserDetail
