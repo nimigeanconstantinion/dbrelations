@@ -1,9 +1,11 @@
 package com.example.dbrelations.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Data
@@ -13,7 +15,7 @@ import java.util.Objects;
 @Getter
 @Entity(name = "Address")
 @Table(name = "addresses")
-public class Address {
+public class Address implements Serializable {
     @Id
     @Generated
     private Long id;
@@ -23,6 +25,8 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     @JsonBackReference
+    @JsonIgnore
+
     private User user;
 
     @Override
@@ -35,5 +39,10 @@ public class Address {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getAddress(), getUser());
+    }
+
+    @Override
+    public String toString(){
+        return "Adresa user="+this.user.getId()+" "+this.address;
     }
 }

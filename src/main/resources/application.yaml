@@ -6,10 +6,11 @@ spring:
     username: root
     password: root
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto:  update
+      enable_lazy_load_no_trans: true
     properties:
       hibernate-dialect: org.hibernate.dialect.MySQL5Dialect
       hibernate.format_sql: true
-
     show-sql: true

@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 @Slf4j
@@ -29,7 +31,8 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/repoid={id}")
     public ResponseEntity<User> lazyFindById(@PathVariable Long id) {
-        return ResponseEntity.ok(userRepository.findUserById(id).get());
+//        return ResponseEntity.ok(userRepository.findUserById(id).get());
+        return null;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -44,4 +47,23 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/onedet={id}")
+    public ResponseEntity<User> newGetById(@PathVariable Long id) {
+        return ResponseEntity.ok(userRepository.findByIdWithCopii(id).get());
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/jpql={id}")
+    public ResponseEntity<User> getWithJPQL(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getWithGraph(id));
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/allusers")
+    public ResponseEntity<List<User>> getFindall() {
+        return ResponseEntity.ok(userService.findAllUsers());
+    }
 }
