@@ -17,16 +17,14 @@ import java.util.Objects;
 @Table(name = "addresses")
 public class Address implements Serializable {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
     @JsonBackReference
-    @JsonIgnore
-
     private User user;
 
     @Override
@@ -38,11 +36,15 @@ public class Address implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getAddress(), getUser());
+        return Objects.hash(getId(), getAddress());
     }
 
     @Override
-    public String toString(){
-        return "Adresa user="+this.user.getId()+" "+this.address;
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

@@ -16,18 +16,15 @@ import java.util.Objects;
 @Table(name = "userdetails")
 public class UserDetail
 {
-
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String detail;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
     @JsonBackReference
-    @JsonIgnore
-
     private User user;
 
     @Override
@@ -39,11 +36,15 @@ public class UserDetail
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDetail(), getUser());
+        return Objects.hash(getId(), getDetail());
     }
 
     @Override
-    public String toString(){
-        return "Detaliul pt user "+this.user.getId()+"-"+this.id+"; "+this.detail;
+    public String toString() {
+        return "UserDetail{" +
+                "id=" + id +
+                ", detail='" + detail + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

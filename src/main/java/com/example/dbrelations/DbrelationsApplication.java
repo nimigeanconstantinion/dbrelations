@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,16 +27,16 @@ public class DbrelationsApplication {
 //	CommandLineRunner commandLineRunner(UserRepository userRepository, UserServiceImpl userService){
 //		return args -> {
 ////			System.out.println(userRepository.findAll().get(0).getUserDetailSet());
-//			List<User> uo=userRepository.findAll();
+//			List<User> uo=userRepository.findAllWith2Copii();
+//
 //			for (User u:uo){
-//					u.setUserDetailSet(new ArrayList<>());
-//					u.setUserAddresses(new ArrayList<>());
+//				System.out.println(u.toString());
 //			}
 //
 //
 //
 //
-//			System.out.println(uo.size());
+////			System.out.println(uo.size());
 //
 //		};
 //	}
